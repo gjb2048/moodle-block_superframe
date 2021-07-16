@@ -24,7 +24,7 @@
 
 /**
  * Modified for use in MoodleBites for Developers Level 1
- * by Richard Jones & Justin Hunt.
+ * by Gareth Barnard, Richard Jones & Justin Hunt.
  *
  * See: https://www.moodlebites.com/mod/page/view.php?id=24546
  */
@@ -78,7 +78,7 @@ class block_superframe extends block_base {
         $this->content->footer = '';
 
         $renderer = $this->page->get_renderer('block_superframe');
-        $this->content->text = $renderer->fetch_block_content($this->instance->id);
+        $this->content->text = $renderer->fetch_block_content($this->instance->id, $this->page->course->id);
 
         // List of course students.
         /* Ignore this optional task for now - add to renderer function if you like.
