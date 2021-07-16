@@ -62,7 +62,31 @@ class block_superframe_renderer extends plugin_renderer_base {
             $data->text = get_string('viewlink', 'block_superframe');
         }
 
+        // List of course students.
+        $data->students = array();
+        $users = self::get_course_users($courseid);
+        foreach ($users as $user) {
+            $data->students[] = ''.$user->lastname.', '.$user->firstname;
+        }
+
         // Render the data in a Mustache template.
         return $this->render_from_template('block_superframe/block_content', $data);
+    }
+
+    private static function get_course_users($courseid) {
+        global $DB;
+
+        $sql = "SELECT u.id, u.firstname, u.lastname
+                FROM {course} as c
+                JOIN {context} as x ON c.id = x.instanceid
+                JOIN {role_assignments} as r ON r.contextid = x.id
+                JOIN {user} AS u ON u.id = r.userid
+               WHERE c.id = :courseid
+                 AND r.roleid = :roleid";
+
+        // In real world query should check users are not deleted/suspended.
+        $records = $DB->get_records_sql($sql, ['courseid' => $courseid, 'roleid' => 5]);
+
+        return $records;
     }
 }
