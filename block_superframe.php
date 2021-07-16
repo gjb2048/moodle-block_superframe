@@ -76,22 +76,18 @@ class block_superframe extends block_base {
         // OK let's add some content.
         $this->content = new stdClass();
         $this->content->footer = '';
-        $this->content->text = get_string('welcomeuser', 'block_superframe', $USER);
-        // Add the block id to the Moodle URL for the view page.
-        $blockid = $this->instance->id;
-        $context = context_block::instance($blockid);
-        // Check the capability.
-        if (has_capability('block/superframe:seeviewpagelink', $context)) {
-            $url = new moodle_url('/blocks/superframe/view.php', ['blockid' => $blockid]);
-            $this->content->text .= html_writer::tag('p', html_writer::link($url, get_string('viewlink', 'block_superframe')));
-        }
+
+        $renderer = $this->page->get_renderer('block_superframe');
+        $this->content->text = $renderer->fetch_block_content($this->instance->id);
 
         // List of course students.
+        /* Ignore this optional task for now - add to renderer function if you like.
         $courseid = $this->page->course->id;
         $users = self::get_course_users($courseid);
         foreach ($users as $user) {
             $this->content->text .= html_writer::tag('li', $user->lastname . ', ' . $user->firstname);
         }
+        */
 
         return $this->content;
     }
