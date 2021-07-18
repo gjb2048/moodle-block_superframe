@@ -16,24 +16,27 @@
 }}
 
 {{!
-    @template block_superframe/frame
-
-    This template renders a url in an iframe of given size.
-
+    @template block_superframe/links
+    This template renders a set of links.
+    Classes required for JS:
+    * none
+    Data attributes required for JS:
+    * none
+    Context variables required for this template:
+    * linkdata an array of url's with parameters.
+    * link the url for the link
+    * text the text for the hyperlink
     Example context (json):
-    {
-        "heading": "My superframe",
-        "url": "http://www.moodlebites.com",
-        "height": "400",
-        "width": "600",
-        "returnlink": "http://www.moodlebites.com/course/view.php?id=2"
-    }
+        {
+         "linkdata": [ ["link", "text"], ["link", "text"], ...]
+        }
 }}
-
-<div class="container">
-    <p>{{fullname}}</p>
-    <h5>{{heading}}</h5>
-    {{> block_superframe/links}}
-    <iframe src="{{url}}" height="{{height}}" width="{{width}}"></iframe>
-    <p><a href="{{{returnlink}}}">{{#str}}returncourse, block_superframe{{/str}}</a></p>
+<div  class="container">
+    <ul class="list-inline">
+        {{#linkdata}}
+        <li class="list-inline-item">
+            <a href="{{{link}}}">{{text}}</a>
+        </li>
+        {{/linkdata}}
+    </ul>
 </div>

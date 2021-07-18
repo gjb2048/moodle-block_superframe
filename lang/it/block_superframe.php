@@ -1,4 +1,5 @@
 <?php
+
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -15,11 +16,13 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Version details
+ * Strings for component 'block_superframe', language 'en'
  *
  * @package   block_superframe
- * @copyright  Daniel Neis <danielneis@gmail.com>
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @version    See the value of '$plugin->version' in version.php.
+ * @copyright  &copy; 2021 G J Barnard.
+ * @author     G J Barnard - gjbarnard at gmail dot com and {@link http://moodle.org/user/profile.php?id=442195}
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 /**
@@ -28,8 +31,9 @@
  *
  * See: https://www.moodlebites.com/mod/page/view.php?id=24546
  */
-defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2021070107;
-$plugin->requires  = 2018120300; // Minimum Moodle 3.6.
-$plugin->component = 'block_superframe';
+// Edit form strings.
+$string['custom'] = 'Costume';
+$string['small'] = 'Piccolo';
+$string['medium'] = 'Medio';
+$string['large'] = 'Grande';
