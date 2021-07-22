@@ -20,12 +20,13 @@
         "welcome": "Welcome user",
         "url": "http://www.moodlebites.com",
         "text": "view page link",
-        "students": ""
+        "students": "",
+        "headingclass": "block_superframe_heading"
     }
 }}
 
 <div>
-    <h3>{{welcome}}</h3>
+    <h3 class="{{headingclass}}">{{welcome}}</h3>
     {{#url}}
     <a href="{{{url}}}">{{text}}</a>
     {{/url}}
