@@ -27,8 +27,19 @@ $blockid = required_param('blockid', PARAM_INT);
 $courseid = required_param('courseid', PARAM_INT);
 $size = optional_param('size', 'none', PARAM_TEXT);
 $def_config = get_config('block_superframe');
-$PAGE->set_course($COURSE);
-$PAGE->set_url('/blocks/superframe/view.php');
+
+if ($courseid == $SITE->id) {
+    $context = context_system::instance();
+    $PAGE->set_context($context);
+} else {
+    $course = $DB->get_record('course', array('id' => $courseid), '*', MUST_EXIST);
+    // This means that we can prevent access with 'seeviewpage' capability on a course override basis.
+    $PAGE->set_course($course);
+    $context = $PAGE->context;
+}
+
+$PAGE->set_url('/blocks/superframe/view.php',
+    array('blockid' => $blockid, 'courseid' => $courseid, 'size' => $size));
 $PAGE->set_heading($SITE->fullname);
 $PAGE->set_pagelayout($def_config->pagelayout);
 $PAGE->set_title(get_string('pluginname', 'block_superframe'));
@@ -37,11 +48,10 @@ require_login();
 
 /* If we get here they have viewed the page.
    Log the page viewed event. */
-$event = \block_superframe\event\block_page_viewed::create(['context' => $PAGE->context]);
+$event = \block_superframe\event\block_page_viewed::create(['context' => $context]);
 $event->trigger();
 
 // Check the users permissions to see the view page.
-$context = context_course::instance($COURSE->id);
 require_capability('block/superframe:seeviewpage', $context);
 
 /* Get the instance configuration data from the database.
