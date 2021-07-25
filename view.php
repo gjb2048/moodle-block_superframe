@@ -35,6 +35,11 @@ $PAGE->set_title(get_string('pluginname', 'block_superframe'));
 $PAGE->navbar->add(get_string('pluginname', 'block_superframe'));
 require_login();
 
+/* If we get here they have viewed the page.
+   Log the page viewed event. */
+$event = \block_superframe\event\block_page_viewed::create(['context' => $PAGE->context]);
+$event->trigger();
+
 // Check the users permissions to see the view page.
 $context = context_course::instance($COURSE->id);
 require_capability('block/superframe:seeviewpage', $context);
@@ -47,8 +52,8 @@ $configdata = $DB->get_field('block_instances', 'configdata', ['id' => $blockid]
 if ($configdata) {
     $config = unserialize(base64_decode($configdata));
 } else {
-    // No instance data, use admin settings.
-    // However, that only specifies height and width, not size.
+    /* No instance data, use admin settings.
+       However, that only specifies height and width, not size. */
    $config = $def_config;
    $config->size = 'custom';
 }
