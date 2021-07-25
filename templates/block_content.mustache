@@ -21,7 +21,8 @@
         "url": "http://www.moodlebites.com",
         "text": "view page link",
         "students": "",
-        "headingclass": "block_superframe_heading"
+        "headingclass": "block_superframe_heading",
+        "acesss": "1627215325"
     }
 }}
 
@@ -32,6 +33,9 @@
     {{/url}}
     <a href="{{{popurl}}}" target="_blank" class="d-block">{{poptext}}</a>
     <a href="{{{tableurl}}}" target="_blank" class="d-block">{{tabletext}}</a>
+    {{#access}}
+    <p>{{#str}}lastaccess, block_superframe{{/str}} {{#userdate}}{{access}}, {{#str}}strftimedate{{/str}}{{/userdate}}</p>
+    {{/access}}
     {{#students}}
     <ul class="list-group ml-0 mt-2">
         <li class="list-group-item list-group-item-warning">{{.}}</li>
