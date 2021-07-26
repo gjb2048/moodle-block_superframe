@@ -15,12 +15,35 @@
 {{!
     @template block_superframe/block_content
     This template renders the content for the block.
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * none
+
+    Context variables required for this template:
+    * welcome a welcome message - string.
+    * url the link to the block's main content page (view page).
+    * text the view page link text.
+    * students - an array of student names.
+    * popurl the link to the block data page (block_data page).
+    * poptext the block data page link text.
+    * tableurl the link to the table manager page (tablemanager page).
+    * tabletext the table manager page link text.
+    * headingclass the CSS class for the heading.
+    * access the last time the course this block is in was accessed unix time string.
+
     Example context (json):
     {
         "welcome": "Welcome user",
         "url": "http://www.moodlebites.com",
         "text": "view page link",
-        "students": "",
+        "students": ["A Student", "Another Student"],
+        "popurl": "#",
+        "poptext": "block data"
+        "tableurl": "#",
+        "tabletext": "table manager",
         "headingclass": "block_superframe_heading",
         "acesss": "1627215325"
     }

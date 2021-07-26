@@ -18,18 +18,27 @@
 {{!
     @template block_superframe/links
     This template renders a set of links.
+
     Classes required for JS:
-    * none
+    * none.
+
     Data attributes required for JS:
-    * none
+    * none.
+
     Context variables required for this template:
     * linkdata an array of url's with parameters.
-    * link the url for the link
-    * text the text for the hyperlink
+    * link the url for the link.
+    * text the text for the hyperlink.
+
     Example context (json):
-        {
-         "linkdata": [ ["link", "text"], ["link", "text"], ...]
-        }
+    {
+        "linkdata": [
+            ["http://www.moodlebites.com/course/view.php?courseid=2&blockid=8&size=custom", "Custom"],
+            ["http://www.moodlebites.com/course/view.php?courseid=2&blockid=8&size=small", "Small"],
+            ["http://www.moodlebites.com/course/view.php?courseid=2&blockid=8&size=medium", "Medium"],
+            ["http://www.moodlebites.com/course/view.php?courseid=2&blockid=8&size=large", "Large"]
+        ]
+    }
 }}
 <div  class="container">
     <ul class="list-inline">

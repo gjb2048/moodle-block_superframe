@@ -20,10 +20,23 @@
 
     This template renders a table of data.
 
+    Classes required for JS:
+    * none.
+
+    Data attributes required for JS:
+    * none.
+
+    Context variables required for this template:
+    * tableheaders an array of column headings for the table.
+    * tabledata an array of arrays of row data for the table body.
+
     Example context (json):
     {
-        tableheaders: [heading 1, heading 2]
-        tabledata: [ [item1 row 1, item2 row 1], [item1 row2, item2 row2], [...] ]
+        tableheaders: ["BlockID", "BlockName", "Course", "CatName"],
+        tabledata: [
+            ["Row 1 ID", "Row 1 Block name", "Row 1 Course shortname", "Row 1 Category name"],
+            ["Row 2 ID", "Row 2 Block name", "Row 2 Course shortname", "Row 2 Category name"]
+        ]
     }
 }}
 <div class="table-responsive">
